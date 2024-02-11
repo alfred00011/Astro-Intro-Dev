@@ -1,8 +1,8 @@
 ---
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/global.css';
-const pageTitle = "Sobre mi"
+const pageTitle = "Sobre mi";
+const titleHead = "Mi primer sitop Web en Astro";
 
 const identity = {
   firstName: "Jhon",
@@ -21,49 +21,38 @@ const skillColor = 'navy';
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-    <Header/>
-		<h1>{pageTitle}</h1>
-    <style define:vars={{skillColor}}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-      .skill {
-        color: var(--skillColor);
-        font-weight: bold;
-      }
-    </style>
-    <h2>Mi primer sitio web en Astro</h2>
-    <p>Actualmente estoy trabajando en la empresa de Creditos y Ahorro Caja Municipal Cusco. Adicionalemte trabajo en proyectos con React js y Astro js</p>
-    <p>Este sitio se irá actualizando a medida que vaya completanto mas partes del proyecto Mi Blog, asi que continua visitando en esta aventura!</p>
+<BaseLayout pageTitle = {pageTitle} titleHead = {titleHead}>
+  <style define:vars={{skillColor}}>
+    h1 {
+      color: purple;
+      font-size: 4rem;
+    }
+    .skill {
+      color: var(--skillColor);
+      font-weight: bold;
+    }
+  </style>
+  <p>Actualmente estoy trabajando en la empresa de Creditos y Ahorro Caja Municipal Cusco. Adicionalemte trabajo en proyectos con React js y Astro js</p>
+  <p>Este sitio se irá actualizando a medida que vaya completanto mas partes del proyecto Mi Blog, asi que continua visitando en esta aventura!</p>
 
-    <p>He aquí algunos datos sobre mí:</p>
-    <ul>
+  <p>He aquí algunos datos sobre mí:</p>
+  <ul>
     <li>Me llamo {identity.firstName}.</li>
     <li>Vivo en {identity.country} y trabajo como {identity.occupation}.</li>
     {identity.hobbies.length >= 2 &&
         <li>Dos de mis aficiones son: {identity.hobbies[0]} y {identity.hobbies[1]}</li>
     }
-    </ul>
-    <p>Mis habilidades son:</p>
-    <ul>
-      {skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
+  </ul>
+  <p>Mis habilidades son:</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
 
-    {happy && <p>¡Aprendiendo Astro ando!</p>}
+  {happy && <p>¡Aprendiendo Astro ando!</p>}
 
-    {finished && <p>¡He terminado este tutorial!</p>}
+  {finished && <p>¡He terminado este tutorial!</p>}
 
-    {goal === 3 ? <p>Mi objetivo es terminar en 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
-    <Footer/>
- 	</body>
-</html>
+  {goal === 3 ? <p>Mi objetivo es terminar en 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
+    
+</BaseLayout>
+
